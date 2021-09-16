@@ -90,7 +90,7 @@
  const pipe = {
      top : {sprite : new Image()},
      bot : {sprite : new Image()},
-     gap:85,
+     gap: 110,
      moved: true,
      pipes : [],
      draw : function(){
@@ -132,8 +132,8 @@
     x : 50,
     y :100,
     speed : 0,
-    gravity : .125,
-    thrust : 3.6,
+    gravity : .08,
+    thrust : 2.2,
     frame:0,
     draw : function() {
         let h = this.animations[this.frame].sprite.height;
@@ -269,8 +269,8 @@
         this.drawScore();
     },
     drawScore : function() {
-            sctx.fillStyle = "#FFFFFF";
-            sctx.strokeStyle = "#000000";
+            sctx.fillStyle = "#FCC026";
+            sctx.strokeStyle = "#114dda";
         switch (state.curr) {
             case state.Play :
                 sctx.lineWidth = "2";
@@ -280,16 +280,16 @@
                 break;
             case state.gameOver :
                     sctx.lineWidth = "2";
-                    sctx.font = "40px Squada One";
+                    sctx.font = "30px Squada One";
                     let sc = `SCORE :     ${this.score.curr}`;
                     try {
                         this.score.best = Math.max(this.score.curr,localStorage.getItem("best"));
                         localStorage.setItem("best",this.score.best);
                         let bs = `BEST  :     ${this.score.best}`;
-                        sctx.fillText(sc,scrn.width/2-80,scrn.height/2+0);
-                        sctx.strokeText(sc,scrn.width/2-80,scrn.height/2+0);
-                        sctx.fillText(bs,scrn.width/2-80,scrn.height/2+30);
-                        sctx.strokeText(bs,scrn.width/2-80,scrn.height/2+30);
+                        sctx.fillText(sc,scrn.width/2-60,scrn.height/2+0);
+                        sctx.strokeText(sc,scrn.width/2-60,scrn.height/2+0);
+                        sctx.fillText(bs,scrn.width/2-60,scrn.height/2+30);
+                        sctx.strokeText(bs,scrn.width/2-60,scrn.height/2+30);
                     }
                     catch(e) {
                         sctx.fillText(sc,scrn.width/2-85,scrn.height/2+15);
@@ -318,7 +318,7 @@ UI.tap[1].sprite.src="img/tap/t1.png";
 bird.animations[0].sprite.src="img/bird/b0.png";
 bird.animations[1].sprite.src="img/bird/b1.png";
 bird.animations[2].sprite.src="img/bird/b2.png";
-bird.animations[3].sprite.src="img/bird/b0.png";
+bird.animations[3].sprite.src="img/bird/b1.png";
 SFX.start.src = "sfx/start.wav"
 SFX.flap.src = "sfx/flap.wav"
 SFX.score.src = "sfx/score.wav"
@@ -344,7 +344,7 @@ gameLoop();
  }
  function draw()
  {
-    sctx.fillStyle = "#30c0df";
+    sctx.fillStyle = "#badedd";
     sctx.fillRect(0,0,scrn.width,scrn.height)
     bg.draw();
     pipe.draw();
@@ -354,3 +354,11 @@ gameLoop();
     UI.draw();
  }
 
+ const scale = () => {
+     let scaleY = (window.innerHeight / 414).toFixed(2);
+     let scaleX = (window.innerWidth / 276).toFixed(2)
+     scrn.style.transform = `scale(${Math.min(scaleX, scaleY) })`
+ }
+
+ scale();
+ window.addEventListener('resize', scale);
