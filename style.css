@@ -1,9 +1,34 @@
 #canvas
 {
     background-color:#30c0df;
-    border: 2px solid black;
     display: block;
     margin: auto;
     padding: auto;
+
+}
+body {
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+}
+
+.sky {
+    background-color: #badedd;
+    width: 100%;
+    flex: 1;
+}
+.ground {
+    background-color: #977a8e;
+    width: 100%;
+    flex: 1;
+}
+
+@media  (orientation: landscape) {
+    .sky, .ground {
+        display: none;
+    }
 }
