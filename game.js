@@ -290,12 +290,17 @@
                         sctx.strokeText(sc,scrn.width/2-60,scrn.height/2+0);
                         sctx.fillText(bs,scrn.width/2-60,scrn.height/2+30);
                         sctx.strokeText(bs,scrn.width/2-60,scrn.height/2+30);
+                        gtag('event', 'chau_albert_again', {
+                            'value' : 1,
+                        });
                     }
                     catch(e) {
                         sctx.fillText(sc,scrn.width/2-85,scrn.height/2+15);
                         sctx.strokeText(sc,scrn.width/2-85,scrn.height/2+15);
                     }
-                    
+                    gtag('event', 'chau_albert', {
+                        'value' : 1,
+                    });
                 break;
         }
     },
